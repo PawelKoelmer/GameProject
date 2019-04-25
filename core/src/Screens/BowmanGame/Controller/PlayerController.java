@@ -25,26 +25,28 @@ public class PlayerController {
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
                 player.velocityX -= 200;
-                player.setAnimation(screen.animWalk);
+                player.setAnimationWalking();
 
                 if(player.getBoundingRectangle().x <= 0){
                     player.velocityX=0;
                 }
                 if(player.isFlipedLeft() == false){
                 player.setFlipedLeft(true);
-                player.flip(screen.movingAtlas);
-                player.flip(screen.standingAtlas);
+                player.flip(player.jumpAtlas);
+                player.flip(player.movingAtlas);
+                player.flip(player.standingAtlas);
                 player.setFlipedRight(false);
             }
         }
         //Ustalenie animacji i przesunięcia oraz kierunku patrzenia postaci
         else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
             player.velocityX += 200;
-            player.setAnimation(screen.animWalk);
+            player.setAnimationWalking();
             if(player.isFlipedRight() == false){
                 player.setFlipedRight(true);
-                player.flip(screen.movingAtlas);
-                player.flip(screen.standingAtlas);
+                player.flip(player.jumpAtlas);
+                player.flip(player.movingAtlas);
+                player.flip(player.standingAtlas);
                 player.setFlipedLeft(false);
             }
             //Przewijanie tła - zapętlenie dwóch textur które przesuwają się w określonym punkcie
@@ -60,13 +62,14 @@ public class PlayerController {
                 }
             }
         } else if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            player.setAnimation(screen.animJump);
+            player.velocityY +=100;
+            player.setAnimationJumping();
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT)){
             System.out.println("Kill'em All");
         }
         else {
-            player.setAnimation(screen.animStand);
+            player.setAnimationStanding();
         }
 
 

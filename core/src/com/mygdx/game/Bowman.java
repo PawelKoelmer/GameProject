@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Bowman extends Game {
 
-	public SpriteBatch batch;
+	private SpriteBatch batch;
 	private boolean paused;
 	private boolean isStarted;
 
@@ -16,7 +16,7 @@ public class Bowman extends Game {
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
-		this.setScreen(new MainMenu(this));
+		this.setScreen(new GameScreen(this));
 	}
 
 	@Override
