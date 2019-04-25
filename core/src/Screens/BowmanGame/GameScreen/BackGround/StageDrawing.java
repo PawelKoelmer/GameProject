@@ -6,8 +6,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 
-import javax.swing.text.PlainDocument;
-
 public class StageDrawing {
 
     public float xBg1,xBg2;
@@ -40,7 +38,7 @@ public class StageDrawing {
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
             player.velocityX = 0;
-            player.setAnimation(screen.animWalk);
+            player.setAnimationWalking();
             screen.stage.act(dt);
         }
         screen.stage.draw();
