@@ -1,0 +1,41 @@
+
+JumpHero.png
+size: 8192,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+4_JUMP
+  rotate: false
+  xy: 2, 2
+  size: 1023, 1232
+  orig: 1023, 1232
+  offset: 0, 0
+  index: 0
+4_JUMP
+  rotate: false
+  xy: 1027, 2
+  size: 1023, 1232
+  orig: 1023, 1232
+  offset: 0, 0
+  index: 1
+4_JUMP
+  rotate: false
+  xy: 2052, 2
+  size: 1023, 1232
+  orig: 1023, 1232
+  offset: 0, 0
+  index: 2
+4_JUMP
+  rotate: false
+  xy: 3077, 2
+  size: 1023, 1232
+  orig: 1023, 1232
+  offset: 0, 0
+  index: 3
+4_JUMP
+  rotate: false
+  xy: 4102, 2
+  size: 1023, 1232
+  orig: 1023, 1232
+  offset: 0, 0
+  index: 4

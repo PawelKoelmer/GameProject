@@ -1,0 +1,20 @@
+
+MenuButtons.png
+size: 512,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+quit
+  rotate: false
+  xy: 254, 2
+  size: 250, 75
+  orig: 250, 75
+  offset: 0, 0
+  index: -1
+startGame
+  rotate: false
+  xy: 2, 2
+  size: 250, 75
+  orig: 250, 75
+  offset: 0, 0
+  index: -1

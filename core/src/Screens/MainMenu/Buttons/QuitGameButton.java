@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Bowman;
-import com.mygdx.game.Constans;
+import com.mygdx.game.Constants;
 
 public class QuitGameButton extends Button {
     public QuitGameButton(final IClickCallback callback){
@@ -17,7 +17,7 @@ public class QuitGameButton extends Button {
     private void init(final IClickCallback callback){
 
 
-        this.setX((Constans.APP_WIDTH -250)/2);
+        this.setX((Constants.APP_WIDTH -250)/2);
         this.setY(400);
 
         this.addListener(new ClickListener(){

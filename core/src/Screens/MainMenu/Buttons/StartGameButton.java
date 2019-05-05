@@ -8,7 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Bowman;
-import com.mygdx.game.Constans;
+import com.mygdx.game.Constants;
+
 
 public class StartGameButton extends Button {
 
@@ -18,7 +19,7 @@ public class StartGameButton extends Button {
     }
     private void init(final IClickCallback callback){
 
-        this.setX((Constans.APP_WIDTH -250)/2);
+        this.setX((Constants.APP_WIDTH -250)/2);
         this.setY(500);
 
         this.addListener(new ClickListener(){

@@ -1,0 +1,41 @@
+
+HeroWalk.png
+size: 2048,4096
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+3_WALK
+  rotate: false
+  xy: 2, 2242
+  size: 941, 1118
+  orig: 941, 1118
+  offset: 0, 0
+  index: 0
+3_WALK
+  rotate: false
+  xy: 2, 1122
+  size: 941, 1118
+  orig: 941, 1118
+  offset: 0, 0
+  index: 1
+3_WALK
+  rotate: false
+  xy: 945, 2242
+  size: 941, 1118
+  orig: 941, 1118
+  offset: 0, 0
+  index: 2
+3_WALK
+  rotate: false
+  xy: 2, 2
+  size: 941, 1118
+  orig: 941, 1118
+  offset: 0, 0
+  index: 3
+3_WALK
+  rotate: false
+  xy: 945, 1122
+  size: 941, 1118
+  orig: 941, 1118
+  offset: 0, 0
+  index: 4

@@ -1,64 +1,68 @@
 package Screens.BowmanGame;
 
+import box2D.UserData;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.mygdx.game.Constants;
+
+import javax.swing.plaf.nimbus.State;
+import java.awt.*;
 
 
 public abstract class AbstractActor extends Actor {
 
-    public TextureAtlas movingAtlas;
-    public TextureAtlas standingAtlas;
+
+
+    protected Body body;
+    protected Sprite sprite;
+    protected UserData userData;
+    protected Rectangle screenRectangle;
+    protected boolean flipedLeft=false;
+    protected boolean flipedRight=true;
+    protected TextureAtlas walkingAtlas;
+    protected TextureAtlas standingAtlas;
+    protected TextureAtlas jumpingAtlas;
     protected Animation animWalk;
     protected Animation animStand;
-    protected boolean flipedLeft;
-    protected boolean flipedRight;
-    public float velocityX;
-    public float velocityY;
-    private float elapsedTime;
-    private Animation<TextureRegion> anim;
-    protected Animation animJump;
-    public TextureAtlas jumpAtlas;
-    public Rectangle bounds;
+    protected Animation jumpAnimation;
+    protected float elapsedTime=0;
+    protected Animation anim;
 
-    public void draw(Batch batch, float parentAlpha){
-        Color c = getColor();
-        batch.setColor(c.r, c.g, c.b, c.a);
-        if ( isVisible() ) {
-            batch.draw(anim.getKeyFrame(elapsedTime) , getX(), getY(), getOriginX(),
-                    getOriginY(), getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
-        }
-    }
-    public void setAnimationStanding(){
-        this.anim = animStand;
-        anim.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
-    }
-    public void setAnimationWalking(){
-        this.anim = animWalk;
-        anim.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
-    }
-    public void setAnimationJumping(){
-        this.anim = animJump;
-        anim.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
-    }
-    public Rectangle getBoundingRectangle(){
-        bounds.set( getX(), getY(), getWidth(), getHeight());
-        return bounds;
-    }
-    public void act(float dt){
-        super.act( dt );
-        elapsedTime += dt;
+    public AbstractActor(Body body){
+        sprite = new Sprite();
 
-        moveBy( velocityX * dt, velocityY * dt );
+        this.body=body;
+        this.userData = (UserData) body.getUserData();
+        screenRectangle=new Rectangle();
     }
-    public void flip(TextureAtlas tex){
-        for(int i=0;i<5;i++){
-            tex.getRegions().get(i).flip(true,false);
+
+    public abstract UserData getUserData();
+    public void draw(){}
+
+    private void updateRectangle() {
+        screenRectangle.x = transformToScreen(body.getPosition().x - userData.getWidth() );
+        screenRectangle.y = transformToScreen(body.getPosition().y - userData.getHeight() );
+        screenRectangle.width = transformToScreen(userData.getWidth());
+        screenRectangle.height = transformToScreen(userData.getHeight());
+    }
+    protected float transformToScreen(float n) {
+        return Constants.WORLD_TO_SCREEN * n;
+    }
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if (body.getUserData() != null) {
+            updateRectangle();
+        } else {
+            // This means the world destroyed the body (enemy or runner went out of bounds)
+            remove();
         }
+
     }
     public boolean isFlipedLeft() {
         return flipedLeft;
@@ -74,4 +78,16 @@ public abstract class AbstractActor extends Actor {
     public void setFlipedRight(boolean flipedRight) {
         this.flipedRight = flipedRight;
     }
+    public void flip(TextureAtlas tex){
+        for(int i=0;i<5;i++){
+            tex.getRegions().get(i).flip(true,false);
+        }
+    }
+    public void setAnim(Animation anim) {
+        this.anim = anim;
+    }
+    public Body getBody() {
+        return body;
+    }
+
 }

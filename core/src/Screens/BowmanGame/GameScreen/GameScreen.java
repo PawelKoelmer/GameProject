@@ -1,43 +1,53 @@
 package Screens.BowmanGame.GameScreen;
 
-import Screens.AbstractScreen;
-import Screens.BowmanGame.Controller.PlayerController;
-import Screens.BowmanGame.GameScreen.BackGround.StageDrawing;
-import Screens.BowmanGame.Hero.Player;
-import com.mygdx.game.Bowman;
 
-public class GameScreen extends AbstractScreen {
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 
-    private PlayerController controller;
-    private Player player;
-    private StageDrawing background;
+public class GameScreen implements Screen {
 
-    public GameScreen(Bowman game) {
-        super(game);
-        init();
-        game.setStarted(false);
+    private GameStage stage;
+
+    public GameScreen() {
+        stage = new GameStage();
     }
-    private void init(){
 
-        initPlayer();
-        background = new StageDrawing(this,player);
-        controller = new PlayerController(player,this,background);
-
-    }
-    private void initPlayer(){
-
-
-        player = new Player();
-        player.setPosition(20,0);
-        stage.addActor(player);
+    @Override
+    public void show() {
 
     }
 
     @Override
-    public void render(float delta){
-        super.render(delta);
-        controller.gameControl();
-        background.draw();
+    public void render(float delta) {
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.draw();
+        stage.act(delta);
+    }
+
+    @Override
+    public void resize(int i, int i1) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+        stage.dispose();
     }
 
 }
